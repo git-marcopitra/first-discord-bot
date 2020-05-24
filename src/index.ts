@@ -1,13 +1,19 @@
 import { Client } from 'discord.js';
 import logger from 'winston';
-import { auth } from './auth';
+import { config } from 'dotenv';
+
+config();
+
+const TOKEN = process.env.TOKEN;
+
 
 logger.remove(logger.transports.Console);
 logger.add(new logger.transports.Console);
 logger.level = 'debug';
 
+logger.info(TOKEN);
 var bot = new Client();
-bot.login(auth.token);
+bot.login(TOKEN);
 
 logger.info(bot);
 
